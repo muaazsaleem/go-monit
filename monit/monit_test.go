@@ -10,14 +10,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var exampleUserTest = UserHTTPTest{
+var exampleTestService = HTTPService{
 	URL:        "http://localhost:8080",
 	StatusCode: 200,
 	Interval:   time.Minute,
 }
 
 func TestStatusDown(t *testing.T) {
-	ss := RunUserTest(exampleUserTest)
+	ss := pingService(exampleTestService)
 	require.Equal(t, ServiceDown, ss)
 }
 
@@ -29,10 +29,10 @@ func TestStatusUP(t *testing.T) {
 	defer sv.Close()
 
 	// point the test endpoint to the test server
-	ut := exampleUserTest
+	ut := exampleTestService
 	ut.URL = sv.URL
 
-	ss := RunUserTest(ut)
+	ss := pingService(ut)
 	require.Equal(t, ServiceUP, ss)
 }
 
@@ -43,9 +43,9 @@ func TestStatusFailing(t *testing.T) {
 		}))
 	defer sv.Close()
 
-	ut := exampleUserTest
+	ut := exampleTestService
 	ut.URL = sv.URL
 
-	ss := RunUserTest(ut)
+	ss := pingService(ut)
 	require.Equal(t, ServiceFailing, ss)
 }
