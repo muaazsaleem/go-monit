@@ -27,10 +27,10 @@ build.local: build/$(BINARY)
 build.linux: build/linux/$(BINARY)
 
 build/$(BINARY): $(SOURCES)
-	go build -o build/$(BINARY) $(BUILD_FLAGS) -ldflags "$(LDFLAGS)"
+	go build -o build/$(BINARY) $(BUILD_FLAGS) -ldflags "$(LDFLAGS)" ./cmd/$(BINARY)
 
 build/linux/$(BINARY): $(SOURC`ES)
-	GOOS=linux GOARCH=amd64 go build $(BUILD_FLAGS) -o build/linux/$(BINARY) -ldflags "$(LDFLAGS)"
+	GOOS=linux GOARCH=amd64 go build $(BUILD_FLAGS) -o build/linux/$(BINARY) -ldflags "$(LDFLAGS)" ./cmd/$(BINARY)
 
 install: default
 	go install
