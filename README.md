@@ -4,7 +4,7 @@ A humble clone of the Monit Service Manager
 
 ### About
 `go-monit` is a humble clone of [Monit](https://en.wikipedia.org/wiki/Monit). At 
-the moment it can monitor a single HTTP service defined in `main.go`
+the moment it can monitor a single HTTP service defined in [main.go](https://github.com/muaazsaleem/go-monit/blob/0a0c74cedd673ad97a8f16fdc1a969d654baedc5/cmd/go-monit/main.go#L17)
 
 _By default a service on [http://localhost:12345](http://localhost:12345) is monitored_
 
